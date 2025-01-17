@@ -9,8 +9,16 @@
 </head>
 <body>
     <div class="container">
-        <textarea id="markdown-input" placeholder="Enter Markdown text here..."></textarea>
-        <div id="markdown-output"></div>
+        <div class="sidebar">
+            <h2>Files</h2>
+            <ul id="file-list">
+                <!-- List of files will be dynamically populated here -->
+            </ul>
+        </div>
+        <div class="editor">
+            <textarea id="markdown-input" placeholder="Enter Markdown text here..."></textarea>
+            <div id="markdown-output"></div>
+        </div>
     </div>
     <script src="script.js"></script>
 </body>
