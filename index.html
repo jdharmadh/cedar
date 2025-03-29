@@ -1,25 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Markdown Editor</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css" />
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-</head>
-<body>
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [
+            ["$", "$"],
+            ["\\(", "\\)"],
+          ],
+          displayMath: [
+            ["$$", "$$"],
+            ["\\[", "\\]"],
+          ],
+        },
+        svg: {
+          fontCache: "global",
+        },
+      };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+  </head>
+  <body>
     <div class="container">
-        <div class="sidebar">
-            <h2>Files</h2>
-            <ul id="file-list">
-                <!-- List of files will be dynamically populated here -->
-            </ul>
-        </div>
-        <div class="editor">
-            <textarea id="markdown-input" placeholder="Enter Markdown text here..."></textarea>
-            <div id="markdown-output"></div>
-        </div>
+      <div class="sidebar">
+        <h2>Files</h2>
+        <ul id="file-list">
+          <!-- List of files will be dynamically populated here -->
+        </ul>
+      </div>
+      <div class="editor">
+        <textarea
+          id="markdown-input"
+          placeholder="Enter Markdown text here..."
+        ></textarea>
+        <div id="markdown-output"></div>
+      </div>
     </div>
     <script src="script.js"></script>
-</body>
+  </body>
 </html>

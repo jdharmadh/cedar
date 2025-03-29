@@ -1,15 +1,37 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const markdownInput = document.getElementById('markdown-input');
-    const markdownOutput = document.getElementById('markdown-output');
+document.addEventListener("DOMContentLoaded", () => {
+  const markdownInput = document.getElementById("markdown-input");
+  const markdownOutput = document.getElementById("markdown-output");
 
-    // Load the marked library (ensure to include it in your HTML)
-    function parseMarkdown(text) {
-        return marked.parse(text); // Use the marked library to parse Markdown
+  function parseMarkdown(text) {
+    return marked.parse(text);
+  }
+
+  function renderContent() {
+    const markdownText = markdownInput.value;
+    const htmlContent = parseMarkdown(markdownText);
+    markdownOutput.innerHTML = htmlContent;
+
+    typeset();
+  }
+
+  function typeset() {
+    if (window.MathJax) {
+      if (window.MathJax.typeset) {
+        console.log("MathJax typesetting triggered");
+        try {
+          window.MathJax.typeset([markdownOutput]);
+        } catch (e) {
+          console.error("MathJax typesetting error:", e);
+        }
+      } else {
+        console.log("MathJax loaded but typeset not ready yet. Retrying...");
+        setTimeout(typeset, 100);
+      }
+    } else {
+      console.log("MathJax not loaded yet. Retrying...");
+      setTimeout(typeset, 500);
     }
+  }
 
-    markdownInput.addEventListener('input', () => {
-        const markdownText = markdownInput.value;
-        const htmlContent = parseMarkdown(markdownText);
-        markdownOutput.innerHTML = htmlContent;
-    });
+  markdownInput.addEventListener("input", renderContent);
 });
